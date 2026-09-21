@@ -1,10 +1,13 @@
 name: Build & Deploy to GitHub Pages
 
-# Vercel is the primary host (see README). This workflow is a drop-in
-# alternative that publishes the same build to GitHub Pages.
+# Vercel is the primary host (see README). This is a drop-in alternative that
+# publishes the same build to GitHub Pages.
+#
+# Manual-trigger only: while Vercel owns the domain, an automatic run would
+# fail on every push (Pages is not enabled) and spam the repo with red checks.
+# To switch hosts: enable Pages under Settings → Pages → Source: GitHub Actions,
+# then add a `push: { branches: [main] }` trigger below.
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
