@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --ink: #252525;
+    --ink-900: #121212;
+    --chip-bg: #e5f2fa;
+    --chip-icon: #039cfb;
+    --page: #ffffff;
+    --butter: #f3f5a8;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Lenis drives scroll; disable native smooth so they don't fight. */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+    scroll-behavior: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  body {
+    @apply bg-white font-body text-ink antialiased;
+    overflow-x: hidden;
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: #8168fd;
+    color: #fff;
+  }
+
+  /* Mona Sans is a variable font — lock the width axis like Figma does. */
+  .font-display {
+    font-variation-settings: 'wdth' 100;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f4f4f4;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #cfcfcf;
+    border-radius: 99px;
+    border: 2px solid #f4f4f4;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #8168fd;
+  }
+
+  :focus-visible {
+    outline: 3px solid #8168fd;
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+@layer components {
+  /* Section eyebrow heading — Mona Sans ExtraBold, uppercase, -1.3px */
+  .h-section {
+    @apply font-display text-[clamp(2rem,5.2vw,3rem)] font-extrabold uppercase leading-[1.02] tracking-head text-ink;
+  }
+
+  .h-mega {
+    @apply font-display font-extrabold uppercase leading-[0.92] tracking-hero;
+  }
+
+  .shell {
+    @apply mx-auto w-full max-w-[1216px] px-5 sm:px-8;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .gpu {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  /* Paper texture on the sticky-note cards */
+  .paper {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.86)),
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+  }
+
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
