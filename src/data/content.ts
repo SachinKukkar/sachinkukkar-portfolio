@@ -331,12 +331,34 @@ export const footer = {
   ],
 } as const;
 
+/** Every section, in order — drives scroll-spy. */
 export const navItems = [
-  { id: 'home', label: 'Home', icon: 'home' as const },
-  { id: 'about', label: 'About', icon: 'user' as const },
-  { id: 'work', label: 'Work', icon: 'folder' as const },
-  { id: 'skills', label: 'Skills', icon: 'sparkles' as const },
-  { id: 'path', label: 'Path', icon: 'route' as const },
-  { id: 'faqs', label: 'FAQs', icon: 'help' as const },
-  { id: 'contact', label: 'Contact', icon: 'mail' as const },
+  { id: 'home', label: 'Home' },
+  { id: 'about', label: 'About' },
+  { id: 'work', label: 'Work' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'path', label: 'Path' },
+  { id: 'faqs', label: 'FAQs' },
+  { id: 'contact', label: 'Contact' },
+];
+
+export type DockItem = {
+  id: string;
+  label: string;
+  icon: 'user' | 'folder' | 'sparkles' | 'mail';
+  /** Tile gradient — app-icon styling, in the site palette. */
+  from: string;
+  to: string;
+};
+
+/**
+ * The four tiles in the Figma "Apple Dock-Nav" frame, pointing at the same
+ * four destinations the design links to. The remaining sections are reachable
+ * from the footer nav.
+ */
+export const dockItems: DockItem[] = [
+  { id: 'about', label: 'About', icon: 'user', from: '#5fb2ff', to: '#0072e6' },
+  { id: 'work', label: 'Work', icon: 'folder', from: '#a98cff', to: '#7a3df0' },
+  { id: 'skills', label: 'Skills', icon: 'sparkles', from: '#6ee79a', to: '#17a349' },
+  { id: 'contact', label: 'Contact', icon: 'mail', from: '#ffb457', to: '#f2620f' },
 ];
