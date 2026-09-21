@@ -5,19 +5,11 @@ import {
   useTransform,
   type MotionValue,
 } from 'framer-motion';
-import { FolderOpen, Mail, Sparkles, UserRound, type LucideIcon } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { dockItems, navItems, type DockItem } from '@/data/content';
 import { useActiveSection } from '@/hooks/useActiveSection';
 import { usePointerFine } from '@/hooks/usePointerFine';
 import { cn } from '@/lib/cn';
-
-const ICONS: Record<DockItem['icon'], LucideIcon> = {
-  user: UserRound,
-  folder: FolderOpen,
-  sparkles: Sparkles,
-  mail: Mail,
-};
 
 /** Active state tracks every section, not just the four with a tile. */
 const SECTION_IDS = navItems.map((n) => n.id);
@@ -105,7 +97,6 @@ function DockTile({
   tile: number;
 }) {
   const ref = useRef<HTMLAnchorElement>(null);
-  const Icon = ICONS[item.icon];
 
   const distance = useTransform(mouseX, (val) => {
     const bounds = ref.current?.getBoundingClientRect();
@@ -132,31 +123,18 @@ function DockTile({
         {item.label}
       </span>
 
+      {/* Figma: 70px tile, image full-bleed, clipped to an 18px radius. */}
       <motion.span
-        style={{
-          width: size,
-          height: size,
-          backgroundImage: `linear-gradient(160deg, ${item.from} 0%, ${item.to} 100%)`,
-        }}
-        className={cn(
-          'relative grid aspect-square place-items-center overflow-hidden rounded-[18px]',
-          'shadow-[0_3px_8px_-2px_rgba(0,0,0,0.35)] transition-shadow duration-300',
-          'group-hover:shadow-[0_6px_14px_-2px_rgba(0,0,0,0.4)]',
-        )}
+        style={{ width: size, height: size }}
+        className="relative block aspect-square overflow-hidden rounded-[18px]"
       >
-        {/* Big Sur-ish gloss: a bright sweep across the top of the tile */}
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 rounded-[18px] bg-gradient-to-b from-white/35 via-white/5 to-transparent"
-        />
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 rounded-[18px] ring-1 ring-inset ring-white/25"
-        />
-
-        <Icon
-          className="relative size-[42%] text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.25)]"
-          strokeWidth={2.1}
+        <img
+          src={item.src}
+          alt=""
+          width={180}
+          height={180}
+          draggable={false}
+          className="size-full select-none object-contain"
         />
       </motion.span>
 

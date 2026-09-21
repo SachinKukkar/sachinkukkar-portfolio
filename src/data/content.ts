@@ -345,10 +345,8 @@ export const navItems = [
 export type DockItem = {
   id: string;
   label: string;
-  icon: 'user' | 'folder' | 'sparkles' | 'mail';
-  /** Tile gradient — app-icon styling, in the site palette. */
-  from: string;
-  to: string;
+  /** Icon exported from the Figma "Apple Dock-Nav" frame. */
+  src: string;
 };
 
 /**
@@ -357,8 +355,8 @@ export type DockItem = {
  * from the footer nav.
  */
 export const dockItems: DockItem[] = [
-  { id: 'about', label: 'About', icon: 'user', from: '#5fb2ff', to: '#0072e6' },
-  { id: 'work', label: 'Work', icon: 'folder', from: '#a98cff', to: '#7a3df0' },
-  { id: 'skills', label: 'Skills', icon: 'sparkles', from: '#6ee79a', to: '#17a349' },
-  { id: 'contact', label: 'Contact', icon: 'mail', from: '#ffb457', to: '#f2620f' },
+  { id: 'about', label: 'About', src: '/images/dock/about.png' },
+  { id: 'work', label: 'Work', src: '/images/dock/work.png' },
+  { id: 'skills', label: 'Skills', src: '/images/dock/skills.png' },
+  { id: 'contact', label: 'Contact', src: '/images/dock/contact.png' },
 ];
